@@ -1,11 +1,13 @@
 .field {
     border: 1px solid;
     border-color: grey;
-    height: 100px;
+    height: 70px;
+    background-color: lightsteelblue;
+    font-weight: 700;
 }
 
 .empty_field{
-    height: 100px;
+    height: 70px;
 }
 
 .sidenav {

@@ -113,16 +113,7 @@ function play() {
 
     document.getElementById("totalDice").innerHTML = diceSum;
 
-    let playerIndex;
-
-    let whoIsPlaying = players.find((p, i) => {
-        playerIndex = i;
-        return p.isPlaying && p.balance > 0;
-    });
-
-    if (!whoIsPlaying){
-        return false
-    }
+    let whoIsPlaying = players.find(p => p.isPlaying && p.balance > 0);
 
     let playersWithpositiveBalance = players.filter(p => p.balance > 0);
 
@@ -137,15 +128,17 @@ function play() {
 
     movePlayer(whoIsPlaying, diceSum)
 
-    whoIsPlaying.isPlaying = false;
+    playersWithpositiveBalance = players.filter(p => p.balance > 0);
 
     if (whoIsPlaying.number < players.length) {
-        players[++playerIndex].isPlaying = true;
+        let next = playersWithpositiveBalance.find(p => p.number > whoIsPlaying.number)
+        next.isPlaying = true;
     } else {
-        let next = players.find(p => p.balance > 0)
+        let next = playersWithpositiveBalance.find(p => p.number < whoIsPlaying.number)
         next.isPlaying = true;
     }
 
+    whoIsPlaying.isPlaying = false;
 }
 
 function addPlayerToField(player) {
