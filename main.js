@@ -120,6 +120,10 @@ function play() {
         return p.isPlaying && p.balance > 0;
     });
 
+    if (!whoIsPlaying){
+        return false
+    }
+
     let playersWithpositiveBalance = players.filter(p => p.balance > 0);
 
     if (playersWithpositiveBalance.length === 1) {
